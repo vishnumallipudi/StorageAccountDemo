@@ -1,0 +1,19 @@
+﻿var storageConnString=  CloudConfigurationManager.GetSetting("StorageAccountKey");
+            var storageAccountRef= CloudStorageAccount.Parse(storageConnString);
+
+            var blobClient= storageAccountRef.CreateCloudBlobClient();
+
+            var containerRef = blobClient.GetContainerReference("democontainer");
+
+            containerRef.CreateIfNotExists(BlobContainerPublicAccessType.Blob);
+
+
+            var blockBlobRef=containerRef.GetBlockBlobReference("file2.jpeg");
+            //blockBlobRef.DownloadToFile(@"C:\Users\Vishnu Mallipudi\Downloads\Storage\filecopy.jpeg", System.IO.FileMode.Open, null, null, null);
+            //Console.WriteLine();
+            using (var fs=System.IO.File.OpenRead(@"C:\Users\Vishnu Mallipudi\Desktop\iphone pics for keeping\file2.jpeg"))
+            {
+                blockBlobRef.UploadFromStream(fs);
+            }
+
+            Console.ReadKey();

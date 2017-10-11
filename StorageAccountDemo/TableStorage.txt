@@ -1,0 +1,64 @@
+﻿  CloudTable ct = ctc.GetTableReference("Employees");
+			ct.CreateIfNotExists();
+
+			//CreateCustomer(ct, new Employee("Maneesh", "Maneesh@domain.com"));
+			//GetCustomer(ct, "US", "Maneesh@domain.com");
+			//GetAllCustomers(ct);
+
+			//var Man = GetCustomer(ct,"US","Maneesh@domain.com");
+			//Man.Name = "ManeeshRaja";
+			//UpdateCustomer(ct, Man);
+			//DeleteCustomer(ct, Man);
+
+
+			TableBatchOperation batch = new TableBatchOperation();
+			var Employee1 = new Employee("Bhargav","bhargav@domain.com");
+			var Employee2 = new Employee("Ajay", "Ajay@domain.com");
+			var Employee3 = new Employee("Mohan", "Mohan@domain.com");
+			batch.Insert(Employee1);
+			batch.Insert(Employee2);
+			batch.Insert(Employee3);
+			ct.ExecuteBatch(batch);
+ 
+ 
+		static void CreateCustomer(CloudTable table, Employee emp)
+		{
+			TableOperation insert = TableOperation.Insert(emp);
+			table.Execute(insert);
+		}
+
+
+		static Employee GetCustomer(CloudTable table,string PartitionKey,string RowKey)
+		{
+			TableOperation Retrieve = TableOperation.Retrieve<Employee>(PartitionKey,RowKey);
+			var res=table.Execute(Retrieve);
+			return ((Employee)res.Result);
+		}
+
+
+		static void GetAllCustomers(CloudTable ct)
+		{
+			TableQuery<Employee> tq = new TableQuery<Employee>()
+									.Where(TableQuery.GenerateFilterCondition("PartitionKey",QueryComparisons.Equal,"US"));
+			var emps= ct.ExecuteQuery(tq);
+			foreach (var emp in emps)
+			{
+				Console.WriteLine($"{emp.Name}--{emp.Email}");
+			}
+
+
+
+		}
+
+
+		static void UpdateCustomer(CloudTable ct, Employee emp)
+		{
+			TableOperation update = TableOperation.Replace(emp);
+			ct.Execute(update);
+		}
+
+		static void DeleteCustomer(CloudTable ct, Employee emp)
+		{
+			TableOperation delete= TableOperation.Delete(emp);
+			ct.Execute(delete);
+		}

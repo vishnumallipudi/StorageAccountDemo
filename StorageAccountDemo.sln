@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageAccountDemo", "StorageAccountDemo\StorageAccountDemo.csproj", "{58214B7A-102E-4988-BA69-E120550017C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedAccessSignatures", "SharedAccessSignatures\SharedAccessSignatures.csproj", "{C1212F20-482F-4D2F-AD6F-23ABE176788E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{58214B7A-102E-4988-BA69-E120550017C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58214B7A-102E-4988-BA69-E120550017C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58214B7A-102E-4988-BA69-E120550017C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1212F20-482F-4D2F-AD6F-23ABE176788E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1212F20-482F-4D2F-AD6F-23ABE176788E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1212F20-482F-4D2F-AD6F-23ABE176788E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1212F20-482F-4D2F-AD6F-23ABE176788E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
